@@ -33,3 +33,6 @@ Lists are used in the following situations:
 
 1. When traversing the points to find the nearest point.
 2. When freeing memory
+
+
+![KakaoTalk_20210529_180357998](https://user-images.githubusercontent.com/72921481/132042933-de06d978-8955-4f46-87a3-3e9f71775405.png)
