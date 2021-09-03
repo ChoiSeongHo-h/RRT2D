@@ -22,7 +22,7 @@ class Dot
 {
 public:
     int x = 0;
-    int y = 0; 
+    int y = 0;
     //refers to parents.
     Dot* beforePtr = NULL;
 };
@@ -46,8 +46,8 @@ void main()
 
     //set map
     Mat map(MAP_LEN, MAP_LEN, CV_8UC3, Scalar(0, 0, 0));
-    line(map, Point(GOAL_X, GOAL_Y), Point(GOAL_X, MAP_LEN-1), Scalar(0, 0, 255));
-    line(map, Point(GOAL_X, GOAL_Y), Point(MAP_LEN-1, GOAL_Y), Scalar(0, 0, 255));
+    line(map, Point(GOAL_X, GOAL_Y), Point(GOAL_X, MAP_LEN - 1), Scalar(0, 0, 255));
+    line(map, Point(GOAL_X, GOAL_Y), Point(MAP_LEN - 1, GOAL_Y), Scalar(0, 0, 255));
     rectangle(map, Rect(OBSTACLE_X, OBSTACLE_Y, OBSTACLE_W, OBSTACLE_H), Scalar(255, 255, 255), -1);
 
     //initial data structure
@@ -82,10 +82,10 @@ void main()
         int altX = minDistElement->x + STEP_SIZE * cos(minDistElementAng);
         int altY = minDistElement->y + STEP_SIZE * sin(minDistElementAng);
         altX = altX >= MAP_LEN ? MAP_LEN - 1 : altX;
-        altY = altY>= MAP_LEN? MAP_LEN - 1 : altY;
+        altY = altY >= MAP_LEN ? MAP_LEN - 1 : altY;
 
         //when not collided with obstacles
-        if (!(altX >= OBSTACLE_X && altX <= OBSTACLE_X+OBSTACLE_W && altY >= OBSTACLE_Y && altY <= OBSTACLE_Y+OBSTACLE_H))
+        if (!(altX >= OBSTACLE_X && altX <= OBSTACLE_X + OBSTACLE_W && altY >= OBSTACLE_Y && altY <= OBSTACLE_Y + OBSTACLE_H))
         {
             //create a new point refers to parents.
             Dot* newDot = new Dot;
@@ -98,7 +98,7 @@ void main()
             newTail->dotPtr = newDot;
             newTail->beforeElement = listTail;
             listTail = newTail;
-            
+
             //draw point and line
             circle(map, Point(altX, altY), 5, Scalar(255, 0, 255), -1, LINE_AA);
             line(map, Point(altX, altY), Point(newDot->beforePtr->x, newDot->beforePtr->y), Scalar::all(255), 1, 8, 0);
