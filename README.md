@@ -18,3 +18,18 @@ The sequence of the RRT algorithm is as follows.
 
 
 Code explanations are in the comments.
+
+Each point spreads out in the form of a tree in space.
+
+When a child is added to the space, it points to its parent.
+
+In addition to these tree-type data structures, lists exist. Whenever a new child is added, the children are added to the list.
+
+Trees are used in the following situations:
+
+1. To return a path when a goal is reached
+
+Lists are used in the following situations:
+
+1. When traversing the points to find the nearest point.
+2. When freeing memory
