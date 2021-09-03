@@ -11,10 +11,10 @@ enum Consts
     MAP_LEN = 1000,
     GOAL_X = 900,
     GOAL_Y = 900,
-    OBSTRUCTER_X = 200,
-    OBSTRUCTER_Y = 200,
-    OBSTRUCTER_W = 600,
-    OBSTRUCTER_H = 600,
+    OBSTACLE_X = 200,
+    OBSTACLE_Y = 200,
+    OBSTACLE_W = 600,
+    OBSTACLE_H = 600,
     MAX_ITER = 1000,
 };
 
@@ -45,7 +45,7 @@ void main()
     Mat map(MAP_LEN, MAP_LEN, CV_8UC3, Scalar(0, 0, 0));
     line(map, Point(GOAL_X, GOAL_Y), Point(GOAL_X, MAP_LEN-1), Scalar(0, 0, 255));
     line(map, Point(GOAL_X, GOAL_Y), Point(MAP_LEN-1, GOAL_Y), Scalar(0, 0, 255));
-    rectangle(map, Rect(OBSTRUCTER_X, OBSTRUCTER_Y, OBSTRUCTER_W, OBSTRUCTER_H), Scalar(255, 255, 255), -1);
+    rectangle(map, Rect(OBSTACLE_X, OBSTACLE_Y, OBSTACLE_W, OBSTACLE_H), Scalar(255, 255, 255), -1);
 
     DotList* listTail = new DotList;
     listTail->dotPtr = new Dot;
@@ -76,7 +76,7 @@ void main()
         altX = altX >= MAP_LEN ? MAP_LEN - 1 : altX;
         altY = altY>= MAP_LEN? MAP_LEN - 1 : altY;
 
-        if (!(altX >= OBSTRUCTER_X && altX <= OBSTRUCTER_X+OBSTRUCTER_W && altY >= OBSTRUCTER_Y && altY <= OBSTRUCTER_Y+OBSTRUCTER_H))
+        if (!(altX >= OBSTACLE_X && altX <= OBSTACLE_X+OBSTACLE_W && altY >= OBSTACLE_Y && altY <= OBSTACLE_Y+OBSTACLE_H))
         {
             Dot* newDot = new Dot;
             newDot->x = altX;
