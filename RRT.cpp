@@ -70,12 +70,12 @@ void main()
         {
             circle(map, Point(listIterator->dotPtr->x, listIterator->dotPtr->y), 5, Scalar(255, 255, 0), -1, LINE_AA);
             float testDist = GetDist(listIterator->dotPtr->x, listIterator->dotPtr->y, tempX, tempY);
-            if (testDist < minDist)
-            {
-                minDist = testDist;
-                minDistElement = listIterator->dotPtr;
-                minDistElementAng = atan2(tempY - listIterator->dotPtr->y, tempX - listIterator->dotPtr->x);
-            }
+            if (testDist > minDist)
+                continue;
+
+            minDist = testDist;
+            minDistElement = listIterator->dotPtr;
+            minDistElementAng = atan2(tempY - listIterator->dotPtr->y, tempX - listIterator->dotPtr->x);
         }
 
         //compute the coordinates of a point.
@@ -85,7 +85,10 @@ void main()
         altY = altY >= MAP_LEN ? MAP_LEN - 1 : altY;
 
         //when not collided with obstacles
-        if (!(altX >= OBSTACLE_X && altX <= OBSTACLE_X + OBSTACLE_W && altY >= OBSTACLE_Y && altY <= OBSTACLE_Y + OBSTACLE_H))
+        if (!(altX >= OBSTACLE_X
+            && altX <= OBSTACLE_X + OBSTACLE_W
+            && altY >= OBSTACLE_Y
+            && altY <= OBSTACLE_Y + OBSTACLE_H))
         {
             //create a new point refers to parents.
             Dot* newDot = new Dot;
